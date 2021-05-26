@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  node_mongo_docker:
+    image: node_api
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+volumes:
+  data:
